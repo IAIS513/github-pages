@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PURE CHAOS</title>
+    <style>
+        body {
+            background: red;
+            color: yellow;
+            font-size: 30px;
+            text-align: center;
+            animation: flash 0.03s infinite alternate;
+            cursor: none;
+            overflow: hidden;
+        }
+        @keyframes flash {
+            0% { background: red; color: yellow; }
+            25% { background: green; color: pink; }
+            50% { background: blue; color: orange; }
+            75% { background: purple; color: white; }
+            100% { background: red; color: yellow; }
+        }
+        .spam {
+            position: absolute;
+            font-size: 100px;
+            font-weight: bold;
+            animation: spin 0.1s infinite linear;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .moving {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: cyan;
+            border-radius: 50%;
+            animation: move 0.3s infinite alternate ease-in-out;
+        }
+        @keyframes move {
+            from { transform: translate(0px, 0px); }
+            to { transform: translate(100px, 100px); }
+        }
+    </style>
+    <script>
+        function annoyingPopups() {
+            setInterval(() => {
+                alert('HAHA! NO ESCAPE!');
+                window.open('https://rickroll.it/', '_blank');
+            }, 500);
+        }
+        function playSound() {
+            let sounds = [
+                'https://www.myinstants.com/media/sounds/trollolol.mp3',
+                'https://www.myinstants.com/media/sounds/airhorn.mp3',
+                'https://www.myinstants.com/media/sounds/mlg-airhorn.mp3',
+                'https://www.myinstants.com/media/sounds/windows-error.mp3'
+            ];
+            setInterval(() => {
+                let audio = new Audio(sounds[Math.floor(Math.random() * sounds.length)]);
+                audio.play();
+            }, 400);
+        }
+        function addSpamText() {
+            setInterval(() => {
+                let spam = document.createElement('div');
+                spam.innerText = 'HAHAHAHAHAHAHA!';
+                spam.className = 'spam';
+                spam.style.top = Math.random() * 100 + 'vh';
+                spam.style.left = Math.random() * 100 + 'vw';
+                spam.style.color = 'rgb(' + Math.random() * 255 + ',' + Math.random() * 255 + ',' + Math.random() * 255 + ')';
+                document.body.appendChild(spam);
+            }, 50);
+        }
+        function preventExit() {
+            window.onbeforeunload = function() {
+                return "YOU CAN NEVER LEAVE!";
+            };
+        }
+        function moveMouseCursor() {
+            document.addEventListener('mousemove', function(e) {
+                let x = e.clientX;
+                let y = e.clientY;
+                let cursorDiv = document.createElement('div');
+                cursorDiv.style.position = 'fixed';
+                cursorDiv.style.top = y + 'px';
+                cursorDiv.style.left = x + 'px';
+                cursorDiv.style.width = '30px';
+                cursorDiv.style.height = '30px';
+                cursorDiv.style.backgroundColor = 'black';
+                cursorDiv.style.borderRadius = '50%';
+                document.body.appendChild(cursorDiv);
+            });
+        }
+        function addMovingObjects() {
+            setInterval(() => {
+                let moving = document.createElement('div');
+                moving.className = 'moving';
+                moving.style.top = Math.random() * 90 + 'vh';
+                moving.style.left = Math.random() * 90 + 'vw';
+                document.body.appendChild(moving);
+            }, 100);
+        }
+    </script>
+</head>
+<body onload="annoyingPopups(); playSound(); addSpamText(); preventExit(); moveMouseCursor(); addMovingObjects();">
+    <marquee behavior="scroll" direction="left" scrollamount="50">WELCOME TO PURE CHAOS!</marquee>
+    <h1>CLICK EVERYTHING! YOU CAN'T LEAVE!</h1>
+    <button onclick="alert('YOU THOUGHT THIS WOULD HELP?')">Click Me</button>
+    <p>Enjoy the madness! (You can't close this page)</p>
+</body>
+</html>
